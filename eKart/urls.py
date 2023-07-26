@@ -21,7 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('ekart/', include('eKart_admin.urls')),
     path('seller/', include('seller.urls')),
-    path('customer/', include('customer.urls'))
+    path('', include('customer.urls'))
 
 
 ]
