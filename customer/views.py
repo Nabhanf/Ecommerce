@@ -53,18 +53,20 @@ def customer_signup(request):
         password = request.POST['password']
 
         
-        # to insert a data in a database table using ORM, we need to 
-        # 1. Create an object of the model class and passing values to class properties
-        customer = Customer(first_name = first_name, last_name = last_name, gender = gender, email = email, 
+        # use exists() method to check whether the user with given email exists, it returns boolean
+        customer_exist = Customer.objects.filter(email = email).exists()
+
+        if not customer_exist: 
+
+            customer = Customer(first_name = first_name, last_name = last_name, gender = gender, email = email, 
                             city = city, country = country, password = password)
+            customer.save()
+            message = 'Registration Succesful'
+
         
-        # 2. call object.save() method
-        # here save() is a method in ORM that is equivalent to 'insert into tablename' query
-        customer.save()
-        message = 'Registration Succesful'
-
-        # now passing response message to html in a dictionary format
-
+        else:
+            message = 'Email Exists'
+   
 
     return render(request, 'customer/customer_signup.html', {'message': message})
 
