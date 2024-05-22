@@ -37,12 +37,9 @@
                     <i class="fa fa-bars"></i> All category 
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Machinery / Mechanical Parts / Tools </a>
-                    <a class="dropdown-item" href="#">Consumer Electronics / Home Appliances </a>
-                    <a class="dropdown-item" href="#">Auto / Transportation</a>
-                    <a class="dropdown-item" href="#">Apparel / Textiles / Timepieces </a>
-                    <a class="dropdown-item" href="#">Home & Garden / Construction / Lights </a>
-                    <a class="dropdown-item" href="#">Beauty & Personal Care / Health </a> 
+                    {% for category in  categoryList %}
+                    <a class="dropdown-item" href=" {% url "customer:store" %}?query={{category.id}} ">{{ category.categoryname }} </a>
+                    {% endfor %} 
                 </div>
             </div>  <!-- category-wrap.// -->
         </div> <!-- col.// -->
@@ -65,8 +62,12 @@
                         <div class="widget-header">
                             <small class="title text-muted">Welcome guest!</small>
                             <div> 
+                                {% if not request.session.customer %}
                                 <a href="{% url 'customer:customer_login' %}">Sign in</a> <span class="dark-transp"> | </span>
                                 <a href="{% url 'customer:customer_signup' %}"> Register</a>
+                                {% else %}
+                                <a href="{% url 'customer:logout_customer' %}">Log out</a> <span class="dark-transp">
+                                {% endif %}    
                             </div>
                         </div>
                         <a href="{% url 'customer:cart' %}" class="widget-header pl-3 ml-3">

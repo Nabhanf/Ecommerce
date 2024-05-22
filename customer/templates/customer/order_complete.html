@@ -30,10 +30,10 @@
                             <div class="invoice-from">
                                 <ul class="list-unstyled text-right">
                                     <li><strong>Invoiced To</strong></li>
-                                    <li>Jakob Smith</li>
-                                    <li>Roupark 37</li>
-                                    <li>New York, NY, 2014</li>
-                                    <li>USA</li>
+                                    <li>{{order_details.customer.first_name}}{{order_details.customer.last_name}}</li>
+                                    <li>{{order_details.customer.city}}</li>
+                                    <li>{{order_details.customer.country}}</li>
+                            
                                 </ul>
                             </div>
                         </div>
@@ -43,9 +43,9 @@
                             <div class="invoice-details mt25">
                                 <div class="well">
                                     <ul class="list-unstyled mb0">
-                                        <li><strong>Order</strong> #</li>
-                                        <li><strong>Transaction</strong> #</li>
-                                        <li><strong>Order Date:</strong> Monday, October 10th, 2015</li>
+                                        <li><strong>Order</strong> {{order_details.order_id}}</li>
+                                        <li><strong>Payment Id</strong> {{order_details.payment_id}}</li>
+                                        <li><strong>Order Date:</strong>{{order_details.created_at}}</li>
                                         <li><strong>Status:</strong> PAID</li>
                                     </ul>
                                 </div>
@@ -62,21 +62,13 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            {% for item in order_items  %}
                                             <tr>
-                                                <td>1024MB Cloud 2.0 Server - elisium.dynamic.com (12/04/2014 - 01/03/2015)</td>
-                                                <td class="text-center">1</td>
-                                                <td class="text-center">$25.00 USD</td>
+                                                <td>{{item.product.product_name}}</td>
+                                                <td class="text-center">{{item.quantity}}</td>
+                                                <td class="text-center">{{item.price}}</td>
                                             </tr>
-                                            <tr>
-                                                <td>Logo design</td>
-                                                <td class="text-center">1</td>
-                                                <td class="text-center">$200.00 USD</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Backup - 1024MB Cloud 2.0 Server - elisium.dynamic.com</td>
-                                                <td class="text-center">12</td>
-                                                <td class="text-center">$12.00 USD</td>
-                                            </tr>
+                                            {% endfor %}
                                         </tbody>
                                         <tfoot>
                                             <tr>

@@ -65,6 +65,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'customer.contextprocessor.getCategory'
             ],
         },
     },
@@ -78,8 +79,13 @@ WSGI_APPLICATION = 'eKart.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME':'ekart_db',
+        'USER':'postgres',
+        'PASSWORD':'12345678',
+        'HOST':'localhost',
+        'PORT':'5432',
+
     }
 }
 
@@ -121,7 +127,26 @@ USE_TZ = True
 STATIC_URL = 'static/'
  
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+MEDIA_URL= '/media/'
+MEDIA_ROOT=os.path.join(BASE_DIR, 'media')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'nabhanfakhrudeen2002@gmail.com'
+EMAIL_HOST_PASSWORD = 'coeg jfch hmiy zrga'
+
+
+
+# key_id	key_secret
+# rzp_test_1nxrnKqcSItbSW	6Rel29T3outYGRAYbrd5JPyj
+#rzp_test_Fe2sKTJTn1ot3f,YaUr3srGPneeCwDepLG5eApE
+RZP_KEY_ID ='rzp_test_Fe2sKTJTn1ot3f'
+RZP_KEY_SECRET='YaUr3srGPneeCwDepLG5eApE'
+

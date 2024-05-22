@@ -14,13 +14,14 @@
                 <header class="mb-4">
                     <h4 class="card-title">Add Product</h4>
                 </header>
-                <form action="" method="" enctype="multipart/form-data">
-
+                <form action="" method="post" enctype="multipart/form-data">
+                 {% csrf_token %}
                     <div class=" form-group">
                         <label>Product Category</label>
-                        <select class="form-control" name="" id="">
-                            <option value="">Electronics</option>
-                            <option value="">Men's Wear</option>
+                        <select class="form-control" name="product_category" id="">
+                            {% for category in addCategory %}
+                            <option value="{{category.id}}">{{category.categoryname}}</option>
+                            {% endfor %}
                         </select>
                     </div> <!-- form-group end.// -->
                     <div class=" form-group">
@@ -29,7 +30,7 @@
                     </div> <!-- form-group end.// -->
                     <div class=" form-group">
                         <label>Product No</label>
-                        <input type="text" class="form-control" name="product_name">
+                        <input type="text" class="form-control" name="product_no">
                     </div>
                     <div class="form-group">
                         <label>Description</label>

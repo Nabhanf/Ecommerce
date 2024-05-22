@@ -10,4 +10,6 @@ urlpatterns = [
    path('sellers/list/pending',views.pending_sellers,name="pending_sellers"),
    path('sellers/list/approved',views.approved_sellers,name="approved_sellers"),
    path('customers/list',views.customers,name="customers"),
+   path('admin_login',views.admin_login,name="admin_login"),
+   path('approve_seller/<int:id>',views.approve_seller,name='approve_seller')
 ]

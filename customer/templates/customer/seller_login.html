@@ -9,12 +9,13 @@
         <div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
           <div class="card-body">
           <h4 class="card-title mb-4">Seller Sign in</h4>
-          <form>
+          <form method='post' enctype="multipart/form-data">
+            {% csrf_token %}
               <div class="form-group">
-                 <input type="text" class="form-control" placeholder="Seller Id" >
+                 <input type="text" class="form-control" placeholder="Seller Id" name="seller_id" >
               </div> <!-- form-group// -->
               <div class="form-group">
-                <input type="password" class="form-control" placeholder="Password" >
+                <input type="password" class="form-control" placeholder="Password" name="password">
               </div> <!-- form-group// -->
               
               <div class="form-group">
@@ -23,7 +24,9 @@
               </div> <!-- form-group form-check .// -->
               <div class="form-group">
                   <!-- <button type="submit" class="btn btn-primary btn-block"> Login  </button> -->
-                  <a href="{% url 'Seller:seller_home' %}" class="btn btn-primary btn-block">Login</a>
+                  <button type="submit" class="btn btn-primary btn-block">Login</button>
+              </br>
+                  {{msg}}
               </div> <!-- form-group// -->    
           </form>
           </div> <!-- card-body.// -->

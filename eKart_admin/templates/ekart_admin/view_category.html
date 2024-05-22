@@ -1,11 +1,30 @@
 {% extends 'ekart_admin/base.html' %}
 {% load static %}
+{% block style %}
+
+{% endblock style %}
 
 {% block content %}
 
 
 <main class="col-md-9">
    <h1>view_category</h1>
+   <table class="table table-striped table-bordered">
+      <tr>
+         <th>SI</th>
+         <th>Category Name</th>
+         <th>Description</th>
+         <th>Image</th>
+      </tr>
+      {% for category in categories %}
+      <tr>
+         <td>{{forloop.counter}}</td>
+         <td>{{category.categoryname}}</td>
+         <td>{{category.description}}</td>
+         <td><img style="width: 100px;height: 100px;" src="{{category.image.url}}" alt=""></td>
+      </tr>
+      {% endfor %}
+   </table>
 </main>
 
 
