@@ -2,7 +2,6 @@ from datetime import date
 import datetime
 from random import randint
 from django.shortcuts import get_object_or_404, render,redirect
-
 from eKart import settings
 from .models import Customer, Cart, Order, OrderItem
 from seller.models import Seller,Products

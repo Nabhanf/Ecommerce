@@ -79,3 +79,7 @@ def approve_seller(request,id):
 
     return redirect('ekart_admin:pending_sellers')
 
+def admin_logout(request):
+    if "admin" in request.session:
+        del request.session['admin']
+    return redirect('ekart_admin:admin_login')
